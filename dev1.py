@@ -41,3 +41,8 @@ def extrai_valor (valor):
         return 'Q'
     if 'K' in valor:
         return 'K'
+
+def empilha (lista, o, d):
+    lista[d] = lista[o]
+    del lista[o]
+    return lista
