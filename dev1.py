@@ -42,71 +42,39 @@ def extrai_valor (valor):
     if 'K' in valor:
         return 'K'
 
-def empilha (lista, o, d):
-    lista[d] = lista[o]
-    del lista[o]
-    return lista
+def lista_movimentos_possiveis(baralho, indice):
+    mp = []
+    naipe = extrai_naipe(baralho[indice])
+    valor = extrai_valor(baralho[indice])
 
-def lista_movimentos_possiveis (baralho, indice):
-    mp =[]
+    print(naipe)
+    print(valor)
+
     if indice == 0:
-        return mp 
-    elif indice == 1:
-        if extrai_valor(baralho[0]) == extrai_valor(baralho[1]) or extrai_naipe(baralho[0]) == extrai_naipe(baralho[1]):
-            mp = [1]
-            return mp
-        else:
-            return mp
-    elif indice == 2:
-        if extrai_valor(baralho[0]) == extrai_valor(baralho[2]) or extrai_naipe(baralho[0]) == extrai_naipe(baralho[2]):
-            a = True
-        else:
-            a = False 
-        if extrai_valor(baralho[1]) == extrai_valor(baralho[2]) or extrai_naipe(baralho[1]) == extrai_naipe(baralho[2]):                      
-            b = True
-        else:
-            b = False
-        if a == True and b == True:
-            mp = [1,2]
-            return mp
-        elif a == True and b == False:
-            mp = [1]
-            return mp
-        elif b == True and a == False:
-            mp = [2]
-            return mp
+        return mp
+
+    naipe1 = extrai_naipe(baralho[indice - 1])
+    valor1 = extrai_valor(baralho[indice - 1])
+    if naipe1 == naipe:
+        mp.append(1)
+        print('entrouaq')
+    elif valor1 == valor:
+        mp.append(1)
+
+    print(naipe1)
+    print(valor1)
+    print(mp)
     
-    elif indice == 3:
-        if extrai_valor(baralho[0]) == extrai_valor(baralho[3]) or extrai_naipe(baralho[0]) == extrai_naipe(baralho[3]):
-            a = True
-        else:
-            a = False
-        if extrai_valor(baralho[1]) == extrai_valor(baralho[3]) or extrai_naipe(baralho[1]) == extrai_naipe(baralho[3]):
-            b = True
-        else:
-            b = False 
-        if extrai_valor(baralho[2]) == extrai_valor(baralho[3]) or extrai_naipe(baralho[2]) == extrai_naipe(baralho[3]):
-            c = True
-        else:
-            c = False
-        if a == True and b == True and c == True:
-            mp = [1, 2, 3]
-            return mp
-        elif a == True and b == True and c == False:
-            mp = [1, 2]
-            return mp
-        elif a == True and c == True and b == False:
-            mp = [1, 3]
-            return mp
-        elif b == True and c == True and a == False:
-            mp = [2, 3]
-            return mp
-        elif a == True and b == False and c == False:
-            mp = [1]
-            return mp
-        elif b == True and a == False and c == False:
-            mp = [2]
-            return mp
-        elif c == True and a == False and b == False:
-            mp = [3]
-            return mp
+
+    if indice - 3 >= 0:
+        naipe3 = extrai_naipe(baralho[indice - 3])
+        valor3 = extrai_valor(baralho[indice - 3])
+        if naipe3 == naipe:
+            mp.append(3)
+        elif valor3 == valor:
+            mp.append(3)
+
+    return mp
+
+
+print (lista_movimentos_possiveis(['6♥', 'J♥', '9♣', '9♥'],1))
