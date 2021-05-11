@@ -47,9 +47,6 @@ def lista_movimentos_possiveis(baralho, indice):
     naipe = extrai_naipe(baralho[indice])
     valor = extrai_valor(baralho[indice])
 
-    print(naipe)
-    print(valor)
-
     if indice == 0:
         return mp
 
@@ -57,14 +54,9 @@ def lista_movimentos_possiveis(baralho, indice):
     valor1 = extrai_valor(baralho[indice - 1])
     if naipe1 == naipe:
         mp.append(1)
-        print('entrouaq')
     elif valor1 == valor:
         mp.append(1)
 
-    print(naipe1)
-    print(valor1)
-    print(mp)
-    
 
     if indice - 3 >= 0:
         naipe3 = extrai_naipe(baralho[indice - 3])
@@ -76,5 +68,34 @@ def lista_movimentos_possiveis(baralho, indice):
 
     return mp
 
-
-print (lista_movimentos_possiveis(['6♥', 'J♥', '9♣', '9♥'],1))
+def possui_movimentos_possiveis (baralho): 
+    indice = 1
+    mp = []
+    naipe = extrai_naipe(baralho[indice])
+    valor = extrai_valor(baralho[indice])
+    while indice <len(baralho): 
+        if indice == 0:
+            indice += 1 
+            return False
+        naipe1 = extrai_naipe(baralho[indice - 1])
+        valor1 = extrai_valor(baralho[indice - 1])
+        if naipe1 == naipe:
+            indice += 1 
+            return True 
+        indice += 1 
+        if valor1 == valor:
+            indice += 1 
+            return True 
+        indice += 1 
+        if indice - 3 >= 0:
+            naipe3 = extrai_naipe(baralho[indice - 3])
+            valor3 = extrai_valor(baralho[indice - 3])
+            if naipe3 == naipe:
+                indice += 1 
+                return True 
+            elif valor3 == valor:
+                indice += 1 
+                return True 
+        else:
+            return False 
+    return False 
