@@ -112,3 +112,44 @@ import random
 def shuffle (bara): 
     shuffle = random.shuffle(bara)
     return shuffle 
+
+def posicao_baralho(baralho):
+    i = 0
+    print("Status atual do baralho:")
+    while i < len(baralho):
+        naipe = extrai_naipe(baralho[i])
+        print("{0} -{1}".format(i + 1,baralho[i]))
+        i += 1
+    return ''
+    
+print ('Paciência Acordeão')
+print ('==================') 
+
+print ('Seja bem-vindo(a) ao jogo de Paciência Acordeão! O objetivo deste jogo é colocar todas as cartas em uma mesma pilha.') 
+
+print ('Existem apenas dois movimentos possíveis:') 
+
+print ('1. Empilhar uma carta sobre a carta imediatamente anterior;') 
+print ('2. Empilhar uma carta sobre a terceira carta anterior.') 
+
+print('Para que um movimento possa ser realizado basta que uma das duas condições abaixo seja atendida:') 
+
+print('1. As duas cartas possuem o mesmo valor ou') 
+print('2. As duas cartas possuem o mesmo naipe.') 
+
+print('Desde que alguma das condições acima seja satisfeita, qualquer carta pode ser movimentada.')
+
+a = input('Digite "ir" para iniciar o jogo: ')
+bara = cria_baralho()
+
+if a == 'ir':
+    shuffle(bara)
+
+print (posicao_baralho(bara))
+
+while possui_movimentos_possiveis(bara) != False:
+    print(bara)
+    escolha = int(input('escolha uma carta de 1 - 52: '))
+    if lista_movimentos_possiveis(bara, escolha) == []:
+        print ('A carta {escolha} não pode ser movida. Por favor, digite um número entre 1 e 52): '.format)
+
