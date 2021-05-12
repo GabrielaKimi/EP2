@@ -42,6 +42,12 @@ def extrai_valor (valor):
     if 'K' in valor:
         return 'K'
 
+def empilha (lista, o, d):
+    lista[d] = lista[o]
+    del lista[o]
+    return lista
+
+
 def lista_movimentos_possiveis(baralho, indice):
     mp = []
     naipe = extrai_naipe(baralho[indice])
@@ -99,3 +105,10 @@ def possui_movimentos_possiveis (baralho):
         else:
             return False 
     return False 
+
+
+import random 
+
+def shuffle (bara): 
+    shuffle = random.shuffle(bara)
+    return shuffle 
